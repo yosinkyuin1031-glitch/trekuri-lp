@@ -22,21 +22,26 @@ export default function Page() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 via-white to-white">
-        <div className="max-w-5xl mx-auto px-5 pt-16 sm:pt-24 pb-20 sm:pb-28 text-center">
-          <div className="inline-block text-xs sm:text-sm font-bold text-blue-700 bg-blue-100 px-3 py-1.5 rounded-full mb-6">治療院向け ファンクショナルトレーニング処方AI</div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-gray-900 leading-tight tracking-tight">
-            「痛み」を取ったその先の、<br className="hidden sm:block" />
-            <span className="text-blue-600">機能向上</span>を、AIで処方する。
-          </h1>
-          <p className="mt-6 sm:mt-8 text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            写真と体力テストから、患者一人ひとりに最適なファンクショナルトレーニングを自動で処方。
-            A4表裏の印刷レポートで、その日から指導が始められます。
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <a href={STRIPE_URL} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-600/20 transition-all">月額5,500円で申し込む</a>
-            <a href="#features" className="w-full sm:w-auto text-gray-700 font-semibold px-8 py-4 hover:text-blue-600">特徴をみる →</a>
+        <div className="max-w-6xl mx-auto px-5 pt-16 sm:pt-24 pb-20 sm:pb-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-block text-xs sm:text-sm font-bold text-blue-700 bg-blue-100 px-3 py-1.5 rounded-full mb-6">治療院向け ファンクショナルトレーニング処方AI</div>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-gray-900 leading-tight tracking-tight">
+                「痛み」を取った<br className="hidden sm:block" />その先の、<br className="sm:hidden" />
+                <span className="text-blue-600">機能向上</span>を、AIで処方する。
+              </h1>
+              <p className="mt-6 sm:mt-8 text-base sm:text-lg text-gray-600 leading-relaxed">
+                写真と体力テストから、患者一人ひとりに最適なファンクショナルトレーニングを自動で処方。
+                A4表裏の印刷レポートで、その日から指導が始められます。
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
+                <a href={STRIPE_URL} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-600/20 transition-all">月額5,500円で申し込む</a>
+                <a href="#features" className="w-full sm:w-auto text-gray-700 font-semibold px-8 py-4 hover:text-blue-600">特徴をみる →</a>
+              </div>
+              <p className="mt-5 text-xs text-gray-500 text-center lg:text-left">決済完了後、1営業日以内にログイン情報をお届けします</p>
+            </div>
+            <HeroMockup />
           </div>
-          <p className="mt-5 text-xs text-gray-500">決済完了後、1営業日以内にログイン情報をお届けします</p>
         </div>
       </section>
 
@@ -71,16 +76,19 @@ export default function Page() {
               num="01"
               title="写真×AI 姿勢分析"
               body="正面・側面の写真1枚ずつで、MediaPipeが自動でランドマーク検出。頭部前方変位・肩の高さ・骨盤傾斜・膝アライメントを数値化し、AIが伸びしろポイントを抽出します。"
+              icon={<IconPosture />}
             />
             <FeatureCard
               num="02"
               title="ファンクショナル自動処方"
               body="ゴブレットスクワット・ブルガリアン・ダンベルRDLなどのBig3を軸に、片脚系・運搬系・体幹系から4種目を個別処方。セット数・回数まで自動で決定します。"
+              icon={<IconAI />}
             />
             <FeatureCard
               num="03"
               title="A4表裏 印刷レポート"
               body="1枚目「からだ診断」、2枚目「今日からやるトレーニング」。各種目にQRコードを付け、患者さんがスマホで動画を見ながら自宅でも取り組めます。"
+              icon={<IconReport />}
             />
           </div>
         </div>
@@ -246,13 +254,151 @@ export default function Page() {
   )
 }
 
-function FeatureCard({ num, title, body }: { num: string; title: string; body: string }) {
+function FeatureCard({ num, title, body, icon }: { num: string; title: string; body: string; icon?: React.ReactNode }) {
   return (
     <div className="bg-white border border-gray-200 rounded-3xl p-7 hover:shadow-xl hover:border-blue-200 transition-all">
-      <div className="w-12 h-12 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center font-black text-lg mb-5">{num}</div>
+      <div className="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-5">
+        {icon ?? <span className="font-black text-lg">{num}</span>}
+      </div>
+      <div className="text-xs font-black text-blue-500 tracking-wider mb-1">{num}</div>
       <h3 className="font-black text-xl text-gray-900 mb-3">{title}</h3>
       <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
     </div>
+  )
+}
+
+function HeroMockup() {
+  return (
+    <div className="relative mx-auto max-w-md lg:max-w-none">
+      {/* 背景のぼかし */}
+      <div className="absolute -inset-6 bg-gradient-to-br from-blue-200 to-blue-400 opacity-20 blur-3xl rounded-full" />
+
+      {/* メイン: A4レポートプレビュー */}
+      <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+        <div className="border-b-2 border-blue-700 pb-2 mb-3 text-center">
+          <div className="text-xs text-gray-400 tracking-widest">TRAINING CLINIC REPORT</div>
+          <div className="font-black text-blue-800 text-lg">からだ診断レポート</div>
+          <div className="text-[10px] text-gray-500">田中 太郎 様 / 45歳 / 2026-04-22</div>
+        </div>
+        {/* 総合所見 */}
+        <div className="bg-blue-50 border border-blue-100 rounded-lg p-2.5 mb-3">
+          <div className="text-[10px] font-bold text-blue-900 leading-relaxed">
+            股関節可動域と体幹安定性に伸びしろあり。片脚系＋運搬系を軸にプログラム。
+          </div>
+        </div>
+        {/* 2カラム */}
+        <div className="grid grid-cols-2 gap-3 text-[9px]">
+          <div>
+            <div className="font-black text-blue-900 border-l-2 border-blue-600 pl-1.5 mb-1.5">検査結果</div>
+            <div className="space-y-1">
+              {[
+                ['片足立ち（右）', '38秒'],
+                ['片足立ち（左）', '22秒'],
+                ['スクワット', 'やや浅'],
+                ['前屈', '-5cm'],
+                ['肩柔軟性', '△'],
+              ].map(([k, v]) => (
+                <div key={k} className="flex justify-between border-b border-gray-100 py-0.5">
+                  <span className="text-gray-600">{k}</span>
+                  <span className="font-bold text-blue-700">{v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="font-black text-blue-900 border-l-2 border-blue-600 pl-1.5 mb-1.5">伸びしろ</div>
+            <div className="space-y-1.5">
+              <WeakCard severity="重要" title="左股関節の安定性" />
+              <WeakCard severity="中度" title="胸椎の伸展可動域" />
+              <WeakCard severity="軽度" title="体幹の前後バランス" />
+            </div>
+          </div>
+        </div>
+        <div className="mt-3 bg-green-50 border border-green-200 rounded p-1.5 text-[9px] text-green-800 leading-relaxed">
+          ✓ デスクワーク30分ごとに立ち上がる / ✓ 週3回以下の頻度で実施
+        </div>
+      </div>
+
+      {/* 2枚目: トレーニングカード */}
+      <div className="absolute -bottom-8 -right-6 lg:-right-10 bg-white rounded-xl shadow-xl border border-gray-200 p-3 rotate-[6deg] hover:rotate-0 transition-transform duration-500 w-52">
+        <div className="flex items-center gap-2">
+          <div className="w-12 h-12 bg-blue-50 rounded-md flex items-center justify-center">
+            <IconSquatMini />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-1 mb-0.5">
+              <span className="w-4 h-4 bg-blue-600 text-white rounded-full text-[8px] font-black flex items-center justify-center">1</span>
+              <span className="font-black text-[11px] text-gray-900">ゴブレットスクワット</span>
+            </div>
+            <div className="text-[9px] text-orange-600 font-black">10回×3セット</div>
+            <div className="text-[8px] text-gray-500 mt-0.5">大腿四頭筋・大臀筋</div>
+          </div>
+          <div className="w-8 h-8 bg-gray-900 rounded grid grid-cols-3 grid-rows-3 gap-px p-0.5">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className={`rounded-[1px] ${[0, 2, 4, 5, 7, 8].includes(i) ? 'bg-white' : 'bg-transparent'}`} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function WeakCard({ severity, title }: { severity: string; title: string }) {
+  const color = severity === '重要' ? 'bg-red-50 text-red-700 border-red-200' : severity === '中度' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-orange-50 text-orange-700 border-orange-200'
+  return (
+    <div className="border border-gray-200 rounded p-1.5">
+      <div className="flex items-center gap-1.5 mb-0.5">
+        <span className={`text-[7px] font-black px-1 py-px rounded border ${color}`}>{severity}</span>
+        <span className="text-[9px] font-bold text-gray-900">{title}</span>
+      </div>
+    </div>
+  )
+}
+
+function IconPosture() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="5" r="2" />
+      <path d="M12 7v5" />
+      <path d="M8 10l4 2 4-2" />
+      <path d="M12 12v5" />
+      <path d="M9 21l3-4 3 4" />
+      <path d="M3 12h2M19 12h2" />
+    </svg>
+  )
+}
+
+function IconAI() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a4 4 0 00-4 4v1a3 3 0 00-3 3v2a3 3 0 001 2.2V16a4 4 0 004 4h4a4 4 0 004-4v-1.8A3 3 0 0019 12v-2a3 3 0 00-3-3V6a4 4 0 00-4-4z" />
+      <circle cx="9" cy="11" r="1" fill="currentColor" />
+      <circle cx="15" cy="11" r="1" fill="currentColor" />
+      <path d="M10 15h4" />
+    </svg>
+  )
+}
+
+function IconReport() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="3" width="14" height="18" rx="2" />
+      <path d="M8 8h8M8 12h8M8 16h5" />
+    </svg>
+  )
+}
+
+function IconSquatMini() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="16" cy="6" r="2.5" />
+      <path d="M16 8.5v5" />
+      <path d="M11 14l5 -0.5 5 0.5" />
+      <path d="M16 13.5l-3 5 -1 6" />
+      <path d="M16 13.5l3 5 1 6" />
+      <rect x="9" y="18" width="14" height="2.5" rx="0.5" fill="#dbeafe" stroke="none" />
+    </svg>
   )
 }
 
