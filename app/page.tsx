@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const STRIPE_URL = 'https://buy.stripe.com/3cI7sK4ckexygQk5ON08g0j'
+const STRIPE_URL = 'https://buy.stripe.com/5kQeVceQY4WY6bGdhf08g0n'
 const LINE_URL = 'https://lin.ee/qvChhK3'
 
 export default function Page() {
@@ -35,7 +35,7 @@ export default function Page() {
                 A4表裏の印刷レポートで、その日から指導が始められます。
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
-                <a href={STRIPE_URL} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-600/20 transition-all">月額5,500円で申し込む</a>
+                <a href={STRIPE_URL} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black px-8 py-4 rounded-2xl text-lg shadow-lg shadow-blue-600/20 transition-all">初期33,000円＋月額5,500円で申し込む</a>
                 <a href="#features" className="w-full sm:w-auto text-gray-700 font-semibold px-8 py-4 hover:text-blue-600">特徴をみる →</a>
               </div>
               <p className="mt-5 text-xs text-gray-500 text-center lg:text-left">決済完了後、1営業日以内にログイン情報をお届けします</p>
@@ -157,7 +157,12 @@ export default function Page() {
                 <span className="text-5xl sm:text-6xl font-black">5,500</span>
                 <span className="text-xl font-bold">円 / 月</span>
               </div>
-              <p className="text-sm text-blue-100 mt-2">（税込）初期費用・契約期間の縛りなし</p>
+              <p className="text-sm text-blue-100 mt-2">（税込）契約期間の縛りなし</p>
+              <div className="mt-5 inline-flex flex-col items-center bg-white/15 border border-white/25 rounded-xl px-5 py-3">
+                <span className="text-[11px] font-bold tracking-wider text-blue-100">初期導入費用</span>
+                <span className="text-2xl sm:text-3xl font-black mt-0.5">33,000<span className="text-base font-bold ml-1">円（税込）</span></span>
+                <span className="text-[11px] text-blue-100 mt-1">アカウント発行・初期設定サポート込み</span>
+              </div>
             </div>
             <ul className="mt-8 space-y-3">
               {[
@@ -403,6 +408,10 @@ function IconSquatMini() {
 }
 
 const faqs = [
+  {
+    q: '初期導入費用には何が含まれますか？',
+    a: '院アカウントの発行、院情報・スタッフ情報の初期設定、エクササイズマスタの初期登録、初回の操作ガイドが含まれます。お申し込み後、運営側で初期セットアップを行ってからログイン情報をお届けします。',
+  },
   {
     q: '最低契約期間はありますか？',
     a: 'ございません。月額契約で、いつでも解約いただけます。解約された月の末日まではご利用いただけます。',
